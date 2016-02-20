@@ -11,6 +11,7 @@ import {requireAuthentication} from '../components/AuthenticatedComponent'
 const routes = (
                 <Route path="/" component={App}>
                     <IndexRoute component={Inbox} />
+                    <Route path="inbox" component={Inbox} />
                     <Route path="filters" component={Filters} />
                     <Route path="*" component={Inbox} />
                 </Route>
