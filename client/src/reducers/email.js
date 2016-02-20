@@ -1,7 +1,8 @@
-import { REQUEST_EMAIL, REQUEST_EMAIL_SUCCESS } from '../constants/EmailConstants'
+import { REQUEST_EMAIL, REQUEST_EMAIL_SUCCESS, SELECT_EMAIL } from '../constants/EmailConstants'
 
 const initialState = {
     isFetching: false,
+    selectedEmail: -1,
     emails: [
             {
                 id: 0,
@@ -24,6 +25,12 @@ export default function email(state = initialState, action) {
             return Object.assign({}, state, {
                 isFetching: false,
                 emails: action.payload.emails
+            });
+
+        case SELECT_EMAIL:
+            console.log(action.payload);
+            return Object.assign({}, state, {
+                selectedEmail: action.payload.selectedEmail
             });
 
         default:
