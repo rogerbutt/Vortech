@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import EmailList from '../components/EmailList';
+import { selectEmail } from '../actions/email';
 import { connect } from 'react-redux';
 
 class Inbox extends Component {
@@ -18,11 +19,12 @@ class Inbox extends Component {
     render () {
         
         const emails = this.props.emails;
+        const dispatch = this.props.dispatch;
 
         return (
                 <div>
                     <h1>Inbox</h1>
-                    <EmailList emails={emails} onEmailClick={() => 0} />
+                    <EmailList emails={emails} onEmailClick={(id) => dispatch(selectEmail(id))} />
                 </div>
                );
 

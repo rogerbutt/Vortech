@@ -13,7 +13,6 @@ class Sidebar extends Component {
 
     componentDidMount() {
         const { dispatch } = this.props;
-        console.log(this.props);
     }
 
     navInbox() {
