@@ -21,6 +21,10 @@ class Filters extends Component {
 
         return (
                     <div>
+                        <div>
+                            <h1>Recipes</h1>
+                            <button>Make New Recipe</button>
+                        </div>
                         <FilterList filters={filters} />
                     </div>
                );
