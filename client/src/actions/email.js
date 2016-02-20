@@ -1,13 +1,15 @@
+import { REQUEST_EMAILS, REQUEST_EMAILS_SUCCESS } from '../constants/EmailConstants';
+import fetch from 'isomorphic-fetch';
 
 export const requestEmails = () => {
     return {
-        type: 'REQUEST_EMAILS'
+        type: REQUEST_EMAILS
     }
 }
 
 export const requestEmailSuccess = (emails) => {
     return {
-        type: 'REQUEST_EMAILS_SUCCESS',
+        type: REQUEST_EMAILS_SUCCESS,
         payload: {
             emails,
         }
