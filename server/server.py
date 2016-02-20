@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import json, bleach
+import json
 from flask import Flask, request
 from subprocess import Popen
 from bson import json_util
@@ -15,12 +15,13 @@ inbox = db.inbox
 
 def to_json(data):
     """ Convert Mongo object(s) to JSON """
-    return bleach.clean(json.dumps(data, default=json_util.default))
+    return json.dumps(data, default=json_util.default)
 
 @app.route('/api/v1/mail/', methods=['GET'])
 def get_all_emails():
     """ Returns all emails in mongodb """
     if request.method == 'GET':
+
         emails = {"emails": [to_json(result) for result in db.inbox.find()] }
         return json.dumps(emails, indent=4, sort_keys=True)
 

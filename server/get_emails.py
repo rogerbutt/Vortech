@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys, imaplib, email,\
-    email.header, datetime, uuid, os
+    email.header, datetime, uuid, os, bleach
 
 from pymongo import MongoClient
 
@@ -35,7 +35,8 @@ def parse_email(msg):
         # text/plain is only other option
         if(part.get_content_type() == "text/plain"):
             # this is now the body
-            email_to_store['body'] = str(part.get_payload(decode=True))[3:]
+            email_to_store['body'] = bleach.clean(
+                    str(part.get_payload(decode=True))[3:])
     #print(json.dumps(
     #        email_to_store,
     #        sort_keys=True, indent=4, ensure_ascii=False))
