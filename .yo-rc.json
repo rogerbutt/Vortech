@@ -1,0 +1,7 @@
+{
+  "generator-react-webpack": {
+    "appName": "vortech",
+    "style": "scss",
+    "postcss": false
+  }
+}
