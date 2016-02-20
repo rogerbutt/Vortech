@@ -28,10 +28,10 @@ class Sidebar extends Component {
                 <div className="sidebar">
                     <ul>
                         <li onClick={this.navInbox}>
-                          <i className="fa fa-inbox"></i> Inbox
+                          <i className="fa fa-inbox"></i> &nbsp; Inbox
                         </li>
                         <li onClick={this.navFilters}>
-                          <i className="fa fa-filter"></i> Filters
+                          <i className="fa fa-filter"></i> &nbsp; Filters
                         </li>
                     </ul>
                 </div>
