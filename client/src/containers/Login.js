@@ -23,12 +23,14 @@ class Login extends Component {
     }
 
     render () {
-    
+
+        return (
             <div>
                 <h2>Login</h2>
                 <input type='text' valueLink={this.linkState('email')} />
                 <input type='password' valueLink={this.linkState('password')} />
             </div>
+            );
     
     }
 }
