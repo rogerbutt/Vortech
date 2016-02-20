@@ -16,18 +16,18 @@ class Inbox extends Component {
     }
 
     render () {
-        
+
         const emails = this.props.emails;
 
         return (
                 <div>
-                    <h1>Inbox</h1>
+                    <h1>Vortex Email</h1>
                     <EmailList emails={emails} onEmailClick={() => 0} />
                 </div>
                );
 
     }
-} 
+}
 
 Inbox.propTypes = {
     emails: PropTypes.array.isRequired,
@@ -35,7 +35,7 @@ Inbox.propTypes = {
 
 function mapStateToProps(state) {
     const emails = state.email.emails;
-    
+
     return {
         emails,
     }

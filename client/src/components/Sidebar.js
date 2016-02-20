@@ -26,7 +26,7 @@ class Sidebar extends Component {
 
     render() {
         return (
-                <div>
+                <div className="sidebar">
                     <ul>
                         <li onClick={this.navInbox}>
                             Inbox

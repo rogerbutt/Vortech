@@ -1,9 +1,13 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
 *, *:before, *:after {
   box-sizing: border-box;
   position: relative; }
 
 html, body {
   background-color: #f6f6f6; }
+
+h1 {
+  color: #333333; }
 
 button {
   outline: none;
@@ -112,3 +116,29 @@ select {
     background-color: #00d899;
     margin-left: auto;
     width: 180px; }
+
+.sidebar {
+  background-color: #FB7374;
+  color: #FFFFFF;
+  float: left;
+  height: 100vh;
+  width: 150px;
+  font-family: 'Montserrat', sans-serif; }
+  .sidebar > ul, .sidebar ol {
+    list-style: none; }
+    .sidebar > ul > li, .sidebar ol > li {
+      cursor: pointer; }
+      .sidebar > ul > li:hover, .sidebar > ul > li:focus, .sidebar ol > li:hover, .sidebar ol > li:focus {
+        opacity: 0.75; }
+      .sidebar > ul > li:active, .sidebar ol > li:active {
+        opacity: 0.90; }
+
+* {
+  -webkit-font-smoothing: antialiased; }
+
+/**
+ * VIEWPORTS
+ */
+/**
+ * IMPORTS
+ */
