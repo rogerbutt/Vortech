@@ -3,6 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 import App from '../containers/App';
 import Welcome from '../containers/Welcome';
 import Inbox from '../containers/Inbox';
+import Filters from '../containers/Filters';
 import Login from '../containers/Login';
 import SignUp from '../containers/SignUp';
 import {requireAuthentication} from '../components/AuthenticatedComponent'
@@ -10,6 +11,7 @@ import {requireAuthentication} from '../components/AuthenticatedComponent'
 const routes = (
                 <Route path="/" component={App}>
                     <IndexRoute component={Inbox} />
+                    <Route path="filters" component={Filters} />
                     <Route path="*" component={Inbox} />
                 </Route>
                 );
