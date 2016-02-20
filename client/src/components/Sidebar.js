@@ -25,13 +25,13 @@ class Sidebar extends Component {
 
     render() {
         return (
-                <div>
+                <div className="sidebar">
                     <ul>
                         <li onClick={this.navInbox}>
-                            Inbox
+                          <i className="fa fa-inbox"></i> &nbsp; Inbox
                         </li>
                         <li onClick={this.navFilters}>
-                            Filters
+                          <i className="fa fa-filter"></i> &nbsp; Filters
                         </li>
                     </ul>
                 </div>

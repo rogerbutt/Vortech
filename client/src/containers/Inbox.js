@@ -18,7 +18,7 @@ class Inbox extends Component {
     }
 
     render () {
-        
+
         const emails = this.props.emails;
         const dispatch = this.props.dispatch;
 
@@ -31,7 +31,7 @@ class Inbox extends Component {
                );
 
     }
-} 
+}
 
 Inbox.propTypes = {
     emails: PropTypes.array.isRequired,
@@ -39,7 +39,7 @@ Inbox.propTypes = {
 
 function mapStateToProps(state) {
     const emails = state.email.emails;
-    
+
     return {
         emails,
     }
