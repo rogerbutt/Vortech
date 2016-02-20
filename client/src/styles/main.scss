@@ -1,2 +1,47 @@
+@charset "utf-8";
+
 @import 'base/all';
 @import 'components/all';
+
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+/**
+ * VIEWPORTS
+ */
+// Width of the content area
+$content-width: 800px;
+$on-palm: 600px;
+$on-laptop: 800px;
+
+$screen-sm-min: 768px;
+$screen-md-min: 992px;
+$screen-lg-min: 1200px;
+
+// iPhone 4
+$screen-iphone4-x: 320px;
+$screen-iphone4-y: 372px;
+
+// iPhone 5
+$screen-iphone5-x: 320px;
+$screen-iphone5-y: 460px;
+
+// iPhone 6
+$screen-iphone6-x: 375px;
+$screen-iphone6-y: 559px;
+
+// iPhone 6 Plus
+$screen-iphone6p-x: 414px;
+$screen-iphone6p-y: 628px;
+
+@mixin media-query($device) {
+  @media screen and (max-width: $device) {
+    @content;
+  }
+}
+
+/**
+ * IMPORTS
+ */
+// @import
