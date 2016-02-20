@@ -1,7 +1,9 @@
-import { REQUEST_FILTERS, REQUEST_FILTERS_SUCCESS } from '../constants/FilterConstants'
+import { REQUEST_FILTERS, REQUEST_FILTERS_SUCCESS, ADD_EMAIL_TO_NEW_FILTER, FINISH_EMAIL_SELECTION } from '../constants/FilterConstants'
 
 const initialState = {
     isFetching: false,
+    newFilterIds: null,
+    newFilterStatus: 0,
     filters: [
         {
             id: 1,
@@ -21,6 +23,19 @@ export default function filter(state = initialState, action) {
             return Object.assign({}, state, {
                 isFetching: false,
                 filters: action.payload.filters
+            });
+
+        case ADD_EMAIL_TO_NEW_FILTER:
+            var ids = [] || state.newFilterIds;
+            ids.push(action.payload.id);
+
+            return Object.assign({}, state, {
+                newFilterIds: ids
+            });
+
+        case FINISH_EMAIL_SELECTION:
+            return Object.assign({}, state, {
+                newFilterStatus: 1
             });
 
         default:
