@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import EmailList from '../components/EmailList';
+import ContentView from './ContentView';
 import { selectEmail } from '../actions/email';
 import { connect } from 'react-redux';
 
@@ -25,6 +26,7 @@ class Inbox extends Component {
                 <div>
                     <h1>Inbox</h1>
                     <EmailList emails={emails} onEmailClick={(id) => dispatch(selectEmail(id))} />
+                    <ContentView />
                 </div>
                );
 

@@ -14,7 +14,6 @@ class App extends Component {
                 <div>
                     <Sidebar />
                     {this.props.children}
-                    <ContentView />
                 </div>
                );
     }
