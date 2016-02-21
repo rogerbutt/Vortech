@@ -73,7 +73,9 @@ def get_post_recipes():
     """ Allows users to post and get the current recipes"""
     if request.method == 'GET':
         recipe = request.args.get('recipe')
-        recipes = {"recipes": [] }
+        if recipe is not None:
+            recipe = recipe.lower()
+        recipes = {"emails": [] }
         for result in db.inbox.find():
             del result["_id"]
             if recipe is not None and recipe in result['filters']:
