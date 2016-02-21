@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json
 from flask import Flask, request
+from custom_filter import make_new_recipe
 from cross_domain import crossdomain
 from subprocess import Popen
 from pymongo import MongoClient
@@ -13,6 +14,12 @@ client = MongoClient('localhost', 27017)
 db = client.mail
 inbox = db.inbox
 
+app.config.update(dict(
+    DEBUG=True,
+    USERNAME='admin',
+    PASSWORD='default'
+))
+
 @app.route('/api/v1/recipes/', methods=['GET','POST'])
 @crossdomain(origin='*')
 def get_post_recipes():
@@ -23,9 +30,12 @@ def get_post_recipes():
             recipes['recipes'].append(result)
         return json.dumps(recipes, indent=4)
     if request.method == 'POST':
-         request_json = request.json
-         return request.json
-         print(request_json)
+        emails = {"emails": [] }
+        for result in db.inbox.find():
+            del result["_id"]
+            emails['emails'].append(result)
+        new_recipe = make_new_recipe(emails, request.data)
+        return new_recipe
 
 @app.route('/api/v1/mail/', methods=['GET'])
 @crossdomain(origin='*')
