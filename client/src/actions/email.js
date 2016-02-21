@@ -27,17 +27,19 @@ export const requestEmailSuccess = (emails) => {
 }
 
 export const fetchEmails = () => {
-    
-    dispatch(requestEmails());
 
-    return fetch('/email')
-        .then((res) => {
-            const data = JSON.parse(res.text);
-            dispatch(requestEmailSuccess(data));
-        })
-        .catch((err) => {
-        });
+    return function (dispatch) {    
+        dispatch(requestEmails());
 
+        return fetch('http://localhost:5000/api/v1/mail/')
+            .then((res) => {
+                const data = JSON.parse(res.text);
+                dispatch(requestEmailSuccess(data.emails));
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
 }
 
 export const sendEmail = (subject, body) => {
