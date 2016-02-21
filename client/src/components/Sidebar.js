@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { pushState } from 'redux-router';
 import { connect } from 'react-redux';
+import FilterOptions from './FilterOptions';
 
 class Sidebar extends Component {
 
@@ -49,6 +50,7 @@ class Sidebar extends Component {
                         <li onClick={this.navFilters}>
                           Filters
                         </li>
+                        <FilterOptions />
                     </ul>
                 </div>
                 )
