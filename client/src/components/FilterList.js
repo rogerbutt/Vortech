@@ -23,7 +23,6 @@ FilterList.propTypes = {
     filters: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
-        action: PropTypes.string.isRequired,
     }).isRequired).isRequired,
     makeNewRecipe: PropTypes.func.isRequired,
 }

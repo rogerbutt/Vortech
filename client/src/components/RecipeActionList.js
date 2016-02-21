@@ -3,7 +3,7 @@ import RecipeAction from './RecipeAction';
 
 
 const RecipeActionList = ({ actions, selectAction }) => (
-                <div>
+                <div className="action-list">
                     <h2> Actions </h2>
                     {actions.map(action => 
                         <RecipeAction

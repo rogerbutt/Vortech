@@ -60,9 +60,13 @@ export const sendNewRecipe = (name) => {
     }
 }
 
-export const newRecipeSuccess = () => {
+export const newRecipeSuccess = (action, name) => {
     return {
-        type: NEW_RECIPE_SUCCESS
+        type: NEW_RECIPE_SUCCESS,
+        payload: {
+            action,
+            name
+        }
     }
 }
 
@@ -85,21 +89,10 @@ export const createNewRecipe = (name, newRecipe, action) => {
             })
         })
         .then(res => {
-            dispatch(newRecipeSuccess());
+            dispatch(newRecipeSuccess(action, name));
         }).catch(err => {
-            dispatch(newRecipeSuccess());
+            dispatch(newRecipeSuccess(action, name));
         });
     }
 }
 
-export const fetchFilters = () => {
-
-    dispatch(requestFilters());
-
-    return fetch('/filter')
-        .then((res) => {
-            const data = JSON.parse(res.text);
-            dispatch(requestFiltersSuccess(data));
-        })
-
-}

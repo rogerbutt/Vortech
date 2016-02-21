@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import FilterOptions from './FilterOptions';
 import { connect } from 'react-redux';
 
 class Dashboard extends Component {
@@ -11,6 +12,7 @@ class Dashboard extends Component {
         return (
             <div className="dashboard">
                 <h2>Dashboard</h2>
+                <FilterOptions />
             </div>
             );
     }

@@ -38,6 +38,7 @@ class RecipeReview extends Component {
 
 RecipeReview.propTypes = {
     onFinish: PropTypes.func.isRequired,
+    actions: PropTypes.string,
 }
 
 
