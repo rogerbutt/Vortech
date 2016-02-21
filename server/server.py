@@ -39,17 +39,17 @@ def make_new_recipe(emails, filtered):
             keywords.append(x)
     return keywords, senders
 
+def check_email_sender(email, filter_senders):
+    return email['sender'] in filter_senders
+
+def check_email_body(email, filter_keywords):
+    num_keywords = 0
+    for keyword in filter_keywords:
+        if keyword in email['body']:
+            num_keywords += 1
+    return num_keywords > 2
+
 def handle_new_filter(name):
-
-    def check_email_sender(email, filter_senders):
-        return email['sender'] in filter_senders
-    def check_email_body(email, filter_keywords):
-        num_keywords = 0
-        for keyword in filter_keywords:
-            if keyword in email['body']:
-                num_keywords += 1
-        return num_keywords > 2
-
     filters = db.filters.find({'name':name}).limit(1)
     for new_filter in filters:
         filter_senders = new_filter['senders']
@@ -73,8 +73,6 @@ def get_post_recipes():
     """ Allows users to post and get the current recipes"""
     if request.method == 'GET':
         recipe = request.args.get('recipe')
-        if recipe is not None:
-            recipe = recipe.lower()
         recipes = {"emails": [] }
         for result in db.inbox.find():
             del result["_id"]
@@ -94,20 +92,44 @@ def get_post_recipes():
         new_filter = {
             'name': req_json['name'],
             "keywords": keywords,
-            "senders": senders }
+            "senders": senders,
+            "action": req_json['action']}
         db.filters.insert(new_filter)
         handle_new_filter(req_json['name'])
 
 @app.route('/api/v1/filters/', methods=['GET'])
 @crossdomain(origin='*', headers="Origin, X-Requested-With, Content-Type, Accept")
 def get_filters():
-    """ Allows users to post and get the current recipes"""
     if request.method == 'GET':
         filters = {"filters": [] }
         for result in db.filters.find():
             del result["_id"]
             filters['filters'].append(result)
         return json.dumps(filters, indent=4)
+
+def parse_subtotal(body):
+    return body[-5:]
+
+@app.route('/api/v1/actions/', methods=['GET'])
+@crossdomain(origin='*', headers="Origin, X-Requested-With, Content-Type, Accept")
+def get_actions():
+    action = request.args.get('action')
+    name = request.args.get('filter')
+    print(name)
+    receipt = { "receipts": [] }
+    if request.method == 'GET' and action == "2":
+        filters = db.filters.find({'name':name}).limit(1)
+        for new_filter in filters:
+            filter_senders = new_filter['senders']
+            filter_keywords = new_filter['keywords']
+        for email in db.inbox.find():
+            # If it matches in any way
+            if check_email_sender(email, filter_senders) or check_email_body(email, filter_keywords):
+                print("found a match")
+                to_append = { "date": email['date'], "subtotal": parse_subtotal(email['body'])}
+                receipt['receipts'].append(to_append)
+    return json.dumps(receipt)
+
 
 @app.route('/api/v1/mail/', methods=['GET'])
 @crossdomain(origin='*', headers="Origin, X-Requested-With, Content-Type, Accept")
@@ -125,9 +147,17 @@ def populate_mongodb_filters():
         'name': "flights",
         "keywords": ['plane'],
         "senders": ["American Airlines", "Virgin Atlantic",
-            "United Airlines"]
+            "United Airlines"],
+        "action": 0
         }
-    db.filters.insert(new_filter)
+
+    cursor = filters.find({'name': "flights"})
+    index = 0
+    for values in cursor:
+        index = index + 1
+        break
+    if index == 0:
+        db.filters.insert(new_filter)
     handle_new_filter(new_filter['name'])
 
 
