@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import FilterItem from './FilterItem';
 
 const FilterList = ({ filters, makeNewRecipe }) => (
-            <div>
+            <div className="filter-list">
                 <button onClick={() => makeNewRecipe() }>
                     Make New Recipe
                 </button>
@@ -12,6 +12,7 @@ const FilterList = ({ filters, makeNewRecipe }) => (
                             <FilterItem
                                 key={f.id}
                                 title={f.title}
+                                action={f.action}
                                 />
                         )}
                 </ul>
@@ -21,7 +22,8 @@ const FilterList = ({ filters, makeNewRecipe }) => (
 FilterList.propTypes = {
     filters: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired
+        title: PropTypes.string.isRequired,
+        action: PropTypes.string.isRequired,
     }).isRequired).isRequired,
     makeNewRecipe: PropTypes.func.isRequired,
 }

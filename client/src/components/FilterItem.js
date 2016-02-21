@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 const FilterItem = ({ title }) => (
-            <li>
+            <li className="filter-item">
                 { title }
             </li>
         )

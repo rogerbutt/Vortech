@@ -1,18 +1,33 @@
 .sidebar {
   background-color: #FB7374;
+  box-shadow: -5px 0px 4px -1px #cb4344 inset;
   color: #FFFFFF;
   float: left;
   height: 100vh;
   width: 15%;
   font-family: 'Montserrat', sans-serif;
 
+  .title {
+    background-color: #FD9394;
+    height: 42px;
+    text-align: center;
+
+    h2 {
+        padding-top: 6px; 
+    }
+  }
+
 
   > ul, ol {
     list-style: none;
+    padding: 0;
     // font-family: inherit;
 
     > li {
       cursor: pointer;
+      font-size: 1.1em;
+      margin-left: 15px;
+      margin-top: 20px;
 
       &:hover,
       &:focus {
@@ -22,6 +37,12 @@
       &:active {
         opacity: 0.90;
       }
+    }
+
+    .subitem {
+        font-size: 0.9em;
+        color: #FDd3d4;
+        padding-left: 5px;
     }
   }
   // font-weight: bold;
