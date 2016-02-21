@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json
 from flask import Flask, request
+from cross_domain import crossdomain
 from subprocess import Popen
 from pymongo import MongoClient
 
@@ -13,6 +14,7 @@ db = client.mail
 inbox = db.inbox
 
 @app.route('/api/v1/mail/', methods=['GET'])
+@crossdomain(origin='*')
 def get_all_emails():
     """ Returns all emails in mongodb """
     if request.method == 'GET':
