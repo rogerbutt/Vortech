@@ -101,19 +101,6 @@ def get_post_recipes():
         print(ret_val)
         return ret_val
 
-@app.route('/api/v1/recipes/', methods=['GET','POST'])
-@crossdomain(origin='*')
-def get_post_recipes():
-    """ Allows users to post and get the current recipes"""
-    if request.method == 'GET':
-        recipes = {"recipes": [] }
-        for result in db.recipes.find():
-            recipes['recipes'].append(result)
-        return json.dumps(recipes, indent=4)
-    if request.method == 'POST':
-         request_json = request.json
-         return request.json
-         print(request_json)
 
 @app.route('/api/v1/mail/', methods=['GET'])
 @crossdomain(origin='*')
