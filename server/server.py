@@ -31,5 +31,5 @@ def spawn_email_proc():
     return proc
 
 if __name__ == '__main__':
-#    proc = spawn_email_proc()
+    proc = spawn_email_proc()
     app.run()
