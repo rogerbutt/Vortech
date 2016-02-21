@@ -1,4 +1,4 @@
-import { REQUEST_FILTERS, REQUEST_FILTERS_SUCCESS, ADD_EMAIL_TO_NEW_FILTER, FINISH_EMAIL_SELECTION, POST_NEW_RECIPE, START_NEW_RECIPE, NEW_RECIPE_SUCCESS } from '../constants/FilterConstants';
+import { REQUEST_FILTERS, REQUEST_FILTERS_SUCCESS, ADD_EMAIL_TO_NEW_FILTER, FINISH_EMAIL_SELECTION, POST_NEW_RECIPE, START_NEW_RECIPE, NEW_RECIPE_SUCCESS, ADD_ACTION_TO_RECIPE, INCREMENT_FLOW } from '../constants/FilterConstants';
 import fetch from 'isomorphic-fetch';
 
 export const requestFilters = () => {
@@ -18,6 +18,12 @@ export const requestFiltersSuccess = (filters) => {
     }
 }
 
+export const incrementFlow = () => {
+    return {
+        type: INCREMENT_FLOW
+    }
+}
+
 export const startNewRecipe = () => {
     return {
         type: START_NEW_RECIPE
@@ -34,9 +40,14 @@ export const addEmailToNewFilter = (id) => {
 }
 
 export const finishEmailSelection = () => {
-   console.log('how');
    return {
         type: FINISH_EMAIL_SELECTION
+   }
+}
+
+export const addActionToRecipe = (id) => {
+   return {
+        type: ADD_ACTION_TO_RECIPE
    }
 }
 
