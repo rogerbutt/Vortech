@@ -1,4 +1,4 @@
-import { REQUEST_FILTERS, REQUEST_FILTERS_SUCCESS, ADD_EMAIL_TO_NEW_FILTER, FINISH_EMAIL_SELECTION, START_NEW_RECIPE } from '../constants/FilterConstants'
+import { REQUEST_FILTERS, REQUEST_FILTERS_SUCCESS, ADD_EMAIL_TO_NEW_FILTER, FINISH_EMAIL_SELECTION, START_NEW_RECIPE, NEW_RECIPE_SUCCESS } from '../constants/FilterConstants'
 
 const initialState = {
     isFetching: false,
@@ -34,18 +34,16 @@ export default function filter(state = initialState, action) {
             });
 
         case ADD_EMAIL_TO_NEW_FILTER:
-            var ids = [] || state.newFilterIds;
-            ids.push(action.payload.id);
-
-            return Object.assign({}, state, {
-                newFilteri: {
-                    ids: ids,
-                }
-            });
+            return state;
 
         case FINISH_EMAIL_SELECTION:
             return Object.assign({}, state, {
                 newFilterStatus: 1
+            });
+
+        case NEW_RECIPE_SUCCESS:
+            return Object.assign({}, state, {
+                newFilterStatus: -1
             });
 
         default:

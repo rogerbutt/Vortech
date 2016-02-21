@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 const EmailItem = ({ onClick, sender, subject }) => (
             <li
                 onClick={onClick}
+                className="email-item"
                 >
                 {sender} {subject} 
             </li>

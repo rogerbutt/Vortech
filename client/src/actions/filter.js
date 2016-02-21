@@ -1,4 +1,4 @@
-import { REQUEST_FILTERS, REQUEST_FILTERS_SUCCESS, ADD_EMAIL_TO_NEW_FILTER, FINISH_EMAIL_SELECTION, POST_NEW_RECIPE, START_NEW_RECIPE } from '../constants/FilterConstants';
+import { REQUEST_FILTERS, REQUEST_FILTERS_SUCCESS, ADD_EMAIL_TO_NEW_FILTER, FINISH_EMAIL_SELECTION, POST_NEW_RECIPE, START_NEW_RECIPE, NEW_RECIPE_SUCCESS } from '../constants/FilterConstants';
 import fetch from 'isomorphic-fetch';
 
 export const requestFilters = () => {
@@ -49,6 +49,12 @@ export const sendNewRecipe = (name) => {
     }
 }
 
+export const newRecipeSuccess = () => {
+    return {
+        type: NEW_RECIPE_SUCCESS
+    }
+}
+
 export const createNewRecipe = (name, newRecipe) => {
 
     return function(dispatch) {
@@ -65,6 +71,9 @@ export const createNewRecipe = (name, newRecipe) => {
                 ids: newRecipe,
                 name: name
             })
+        })
+        .then(res => {
+            dispatch(newRecipeSuccess());            
         });
     }
 }

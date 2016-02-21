@@ -31,8 +31,12 @@ class Inbox extends Component {
 
         return (
                 <div>
-                    <h1>Inbox</h1>
-                    <EmailList emails={emails} onEmailClick={(id) => dispatch(selectEmail(id))} />
+                    <div className="email-list">
+                        <input type="text" placeholder="Search" />
+                        <EmailList
+                            emails={emails}
+                            onEmailClick={(id) => dispatch(selectEmail(id))} />
+                    </div>
                     <ContentView />
                 </div>
                );

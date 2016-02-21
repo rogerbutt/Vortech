@@ -30,7 +30,6 @@ class Filters extends Component {
                     <div>
                         <div>
                             <h1>Recipes</h1>
-                            <button onClick={this.makeNewRecipe}>Make New Recipe</button>
                         </div>
                         <RecipeFlow />
                     </div>

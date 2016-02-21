@@ -52,7 +52,7 @@ class RecipeFlow extends Component {
         
         switch(this.props.newFilterStatus) {
             case -1:
-                slide = <FilterList filters={filters} />;
+                slide = <FilterList filters={filters} makeNewRecipe={() => this.makeNewRecipe()} />;
                 break;
 
             case 0:
