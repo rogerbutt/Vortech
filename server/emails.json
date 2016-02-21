@@ -1,0 +1,67 @@
+{
+  "emails": [
+      {
+          "id"      : 0,
+          "sender"  : "Daniel Block",
+          "subject" : "GE 423 Office Hours Tomorrow",
+          "date"    : "2/1/16",
+          "body"    : "Hi class,  Just letting you know my planned schedule for today.  I am currently in the lab until 10:40.  Then after lecture I will be in the lab until 1pm.  From 1 to 3 I will be in my ECE office and you can come there for questions and then back in the lab from 3:15 until 4:30.  Dan"
+      },
+      {
+          "id"      : 1,
+          "sender"  : "Bundle Stars",
+          "subject" : "Play Steam Games and win Prizes!",
+          "date"    : "1/12/16",
+          "body"    : "We’ve just made the Must Play Bundle even more MUST PLAY! To celebrate the launch of this exclusive bundle, we're giving away three $50 Steam Wallets. You get an entry just for getting our emails, plus you’ll get two entries for every game that you clock up an hour of game time from this awesome bundle!"
+      },
+      {
+          "id"      : 2,
+          "sender"  : "Inside Illinois",
+          "subject" : "This week: Parliamentarians work to ensure fair senate meetings; new director of athletics named",
+          "date"    : "1/23/6",
+          "body"    : "Parliamentarians work to ensure fair, consistent senate proceedings. Bringing order to the 250-member Urbana-Champaign Senate is not a task for the fainthearted."
+      },
+      {
+          "id"      : 3,
+          "sender"  : "LinkedIn Pulse",
+          "subject" : "Why Amazon won't become the Amazon of Music",
+          "date"    : "1/21/16",
+          "body"    : "The company was founded in 1994, spurred by what Bezos called his regret minimization framework, which described his efforts to fend off any regrets for not participating sooner in the Internet business boom during that time.[18] In 1994, Bezos left his employment as vice-president of D. E. Shaw & Co., a Wall Street firm, and moved to Seattle. He began to work on a business plan for what would eventually become Amazon.com."
+      },
+      {
+          "id"      : 4,
+          "sender"  : "LinkedIn Pulse",
+          "subject" : "Is Uber redefining the work week?",
+          "date"    : "2/1/16",
+          "body"    : "Uber's market share continues to grow as the ride sharing monolith gets bigger and bigger."
+      },
+      {
+          "id"      : 5,
+          "sender"  : "Uber Receits",
+          "subject" : "Your Friday eventing trip with Uber",
+          "date"    : "1/20/16",
+          "body"    : "Base Fare 2.00 Distance 3.00 Time 5.00, $5.00 Minimum Subtotal 12.00"
+      },
+      {
+          "id"      : 6,
+          "sender"  : "Google Play",
+          "subject" : "Your Google Play Order Receipt from Feb 16, 2016",
+          "date"    : "2/16/16",
+          "body"    : "Thank you. You've made a purchase from (주)컴투스 on Google Play. Order number: GPA.1356-0550-5671-0758 Order date: Feb 16, 2016 12:17:43 AM CST"
+      },
+      {
+          "id"      : 7,
+          "sender"  : "rogerbutt",
+          "subject" : "[Vortech] Some front end (#3)",
+          "date"    : "2/21/16",
+          "body"    : "Commit Summary front end start up code remove node mods File Changes A client/dist/bundle.js (29902) M client/package.json (5) A client/src/actions/email.js (36) R client/src/components/.EmailList.js.swp (0) A client/src/components/EmailItem.js (18) A client/src/components/EmailList.js (27) A client/src/constants/EmailConstants.js (2) A client/src/containers/Assistant.js (0) A client/src/containers/Filters.js (0) A client/src/containers/Inbox.js (45) M client/src/containers/Login.js (4) D client/src/containers/Profile.js (38) D client/src/containers/ReviewCode.js (59) D client/src/containers/SubmitCode.js (68) M client/src/index.js (3) A client/src/reducers/email.js (33) M client/src/reducers/index.js (4) M client/src/routes/routes.js (11) Patch Links:  https://github.com/CharlieMartell/Vortech/pull/3.patch https://github.com/CharlieMartell/Vortech/pull/3.diff"
+      },
+      {
+          "id"      : 8,
+          "sender"  : "Jonathan Alkalai",
+          "subject" : "[CrowdSauce] routing landing page to index.html (#15)",
+          "date"    : "2/14/16",
+          "body"    : "You can view, comment on, or merge this pull request online at: https://github.com/alkalai2/CrowdSauce/pull/15 Commit Summary routing landing page to index.html File Changes M app.js (9) Patch Links: https://github.com/alkalai2/CrowdSauce/pull/15.patch https://github.com/alkalai2/CrowdSauce/pull/15.diff"
+      }
+  ]
+}

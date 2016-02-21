@@ -15,6 +15,11 @@ last_email = None
 EMAIL_ACCOUNT = "charliecmartell@gmail.com"
 EMAIL_FOLDER = "inbox"
 
+def make_email_pretty(email):
+    # Strip the sender address off
+    #email['sender'] = email['sender'].
+    pass
+
 def store_email(email):
     """ Puts the email into the mongodb db if its not already there """
     cursor = inbox.find({'message-id': email['message-id']})
@@ -44,12 +49,14 @@ def parse_email(msg):
         # text/plain is only other option
         if(part.get_content_type() == "text/plain"):
             # this is now the body
-            email_to_store['body'] = bleach.clean(
-                    str(part.get_payload(decode=True))[3:])
+            #email_to_store['body'] = bleach.clean(
+            #        str(part.get_payload(decode=True))[3:])
+            email_to_store['body'] = str(part.get_payload(decode=True))[3:]
     #print(json.dumps(
     #        email_to_store,
     #        sort_keys=True, indent=4, ensure_ascii=False))
     if "Unspecified" not in email_to_store.values():
+        email_to_store = make_email_pretty(email_to_store)
         store_email(email_to_store)
 
 def process_mailbox(M):
