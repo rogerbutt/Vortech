@@ -1,11 +1,13 @@
 import React, { PropTypes, Component } from 'react';
-import FilterList from '../components/FilterList';
+import RecipeFlow from '../components/RecipeFlow';
+import { startNewRecipe } from '../actions/filter';
 import { connect } from 'react-redux';
 
 class Filters extends Component {
 
     constructor(props) {
         super(props);
+        this.makeNewRecipe = this.makeNewRecipe.bind(this);
     }
 
     componentDidMount() {
@@ -15,17 +17,22 @@ class Filters extends Component {
         } = this.props;
     }
 
+    makeNewRecipe() {
+        this.props.dispatch(startNewRecipe());
+    }
+
     render () {
     
         const filters = this.props.filters;
+        var content = null;
 
         return (
                     <div>
                         <div>
                             <h1>Recipes</h1>
-                            <button>Make New Recipe</button>
+                            <button onClick={this.makeNewRecipe}>Make New Recipe</button>
                         </div>
-                        <FilterList filters={filters} />
+                        <RecipeFlow />
                     </div>
                );
 
@@ -34,14 +41,11 @@ class Filters extends Component {
 }
 
 Filters.propTypes = {
-    filters: PropTypes.array.isRequired,
 };
 
 function mapStateProps(state) {
-    const filters = state.filter.filters;
 
     return {
-        filters,
     }
 }
 

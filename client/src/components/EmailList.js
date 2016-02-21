@@ -6,7 +6,8 @@ const EmailList = ({ emails, onEmailClick }) => (
                 {emails.map(email =>
                         <EmailItem
                             key={email.id}
-                            {...email}
+                            subject={email.subject}
+                            sender={email.sender}
                             onClick={() => onEmailClick(email.id)}
                             />
                         )}
@@ -18,7 +19,6 @@ EmailList.propTypes = {
         id: PropTypes.number.isRequired,
         sender: PropTypes.string.isRequired,
         subject: PropTypes.string.isRequired,
-        date: PropTypes.object.isRequired,
         body: PropTypes.string
     }).isRequired).isRequired,
     onEmailClick: PropTypes.func.isRequired

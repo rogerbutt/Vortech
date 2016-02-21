@@ -1,4 +1,4 @@
-import { REQUEST_FILTERS, REQUEST_FILTERS_SUCCESS, ADD_EMAIL_TO_NEW_FILTER, FINISH_EMAIL_SELECTION, POST_NEW_RECIPE } from '../constants/FilterConstants';
+import { REQUEST_FILTERS, REQUEST_FILTERS_SUCCESS, ADD_EMAIL_TO_NEW_FILTER, FINISH_EMAIL_SELECTION, POST_NEW_RECIPE, START_NEW_RECIPE } from '../constants/FilterConstants';
 import fetch from 'isomorphic-fetch';
 
 export const requestFilters = () => {
@@ -18,10 +18,16 @@ export const requestFiltersSuccess = (filters) => {
     }
 }
 
+export const startNewRecipe = () => {
+    return {
+        type: START_NEW_RECIPE
+    }
+}
+
 export const addEmailToNewFilter = (id) => {
     return {
         type: ADD_EMAIL_TO_NEW_FILTER,
-        payload {
+        payload: {
             id
         }
     }
@@ -33,21 +39,26 @@ export const finishEmailSelection = () => {
    }
 }
 
-export const sendNewRecipe = () => {
+export const sendNewRecipe = (name) => {
     return {
-        type: POST_NEW_RECIPE
+        type: POST_NEW_RECIPE,
+        payload: {
+            name
+        }
     }
 }
 
-export const createNewRecipe = () => {
+export const createNewRecipe = (name, newRecipe) => {
 
-    dispatch(sendNewRecipe());
+    return function(dispatch) {
 
-    return fetch('/recipe', {
-        method: 'post',
-        emailIds: [ 1 ]
-    });
+        dispatch(sendNewRecipe(name));
 
+        return fetch('/recipe', {
+            method: 'post',
+            newRecipe: 1
+        });
+    }
 }
 
 export const fetchFilters = () => {
