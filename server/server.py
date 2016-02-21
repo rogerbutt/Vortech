@@ -12,7 +12,20 @@ app = Flask(__name__)
 # MongoDB connection
 client = MongoClient('localhost', 27017)
 db = client.mail
-inbox = db.inbox
+
+@app.route('/api/v1/recipes/', methods=['GET','POST'])
+@crossdomain(origin='*')
+def get_post_recipes():
+    """ Allows users to post and get the current recipes"""
+    if request.method == 'GET':
+        recipes = {"recipes": [] }
+        for result in db.recipes.find():
+            recipes['recipes'].append(result)
+        return json.dumps(recipes, indent=4)
+    if request.method == 'POST':
+         request_json = request.json
+         return request.json
+         print(request_json)
 
 app.config.update(dict(
     DEBUG=True,
@@ -47,6 +60,7 @@ def get_all_emails():
             del result["_id"]
             emails['emails'].append(result)
         return json.dumps(emails, indent=4)
+<<<<<<< Updated upstream
 
 def populate_mongodb():
     with open('emails.json') as data_file:
@@ -59,6 +73,8 @@ def populate_mongodb():
             break
         if index == 0:
             db.inbox.insert(email)
+=======
+>>>>>>> Stashed changes
 
 def spawn_email_proc():
     cmd_str = "./get_emails.py"
