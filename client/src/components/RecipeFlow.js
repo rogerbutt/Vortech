@@ -2,20 +2,23 @@ import React, { Component, PropTypes } from 'react';
 import FilterSelect from './FilterSelect'
 import FilterList from './FilterList';
 import RecipeReview from './RecipeReview'
+import RecipeActionList from './RecipeActionList';
 import { connect } from 'react-redux';
-import { startNewRecipe, createNewRecipe } from '../actions/filter';
+import { startNewRecipe, createNewRecipe, incrementFlow } from '../actions/filter';
 
 class RecipeFlow extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            ids: []
+            ids: [],
+            action: -1
         }
 
         this.handleEmailSelect = this.handleEmailSelect.bind(this);
         this.makeNewRecipe = this.makeNewRecipe.bind(this);
         this.handleFinish = this.handleFinish.bind(this);
+        this.addAction = this.addAction.bind(this);
     }
 
     componentDidMount() {
@@ -36,6 +39,14 @@ class RecipeFlow extends Component {
         });
     }
 
+    addAction(id) {
+       console.log('fuck');
+       this.setState({
+           action: id
+       });
+       this.props.dispatch(incrementFlow());
+    }
+
     makeNewRecipe() {
         this.props.dispatch(startNewRecipe());
     }
@@ -52,7 +63,7 @@ class RecipeFlow extends Component {
         
         switch(this.props.newFilterStatus) {
             case -1:
-                slide = <FilterList filters={filters} />;
+                slide = <FilterList filters={filters} makeNewRecipe={() => this.makeNewRecipe()} />;
                 break;
 
             case 0:
@@ -60,6 +71,10 @@ class RecipeFlow extends Component {
                 break;
 
             case 1:
+                slide = <RecipeActionList actions={this.props.actions} selectAction={(id) => this.addAction(id)} />
+                break;
+
+            case 2:
                 slide = <RecipeReview onFinish={(name) => this.handleFinish(name)} />;
                 break;
 
@@ -86,11 +101,13 @@ function mapStateToProps(state) {
     const newFilterStatus = state.filter.newFilterStatus;
     const filters = state.filter.filters;
     const emails = state.email.emails;
+    const actions = state.filter.actions
 
     return {
         newFilterStatus,
         filters,
         emails,
+        actions,
     }
 }
 

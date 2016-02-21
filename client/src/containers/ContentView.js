@@ -25,7 +25,7 @@ class ContentView extends Component {
         console.log(selectedEmail);
 
         return (
-                <div>
+                <div className="content-view">
                     { (selectedEmail !== -1) ? <EmailBody /> : <p>Hi</p> }
                 </div>
                );

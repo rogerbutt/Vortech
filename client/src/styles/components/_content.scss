@@ -1,3 +1,56 @@
 .content {
     float: left;
+    width: 85%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.email-list {
+    background-color: white;
+    width: 30%;
+    height: 100vh;
+    overflow-y: scroll;
+    float: left;
+
+    ul {
+        padding: 0;
+    }
+
+    .email-item {
+        list-style-type: none;
+        padding: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        border-bottom: 1px solid #ccc;
+    }
+}
+
+.select-email-list {
+    background-color: white;
+    width: 1100px;
+    margin: 30px auto;
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.content-view {
+    float: left;
+    width: 70%;
+    overflow-y: scroll;
+    height: 100vh;
+
+    * {
+        margin: 20px;
+    }
+}
+
+.recipe-action {
+    float: left;
+    margin: 10px;
+    width: 250px;
+    height: 250px;
+    background-color: white;
 }
