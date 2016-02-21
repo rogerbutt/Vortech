@@ -16,12 +16,23 @@ class Dashboard extends Component {
     render () {
         const { dispatch, filters } = this.props;
 
+        console.log('here');
         console.log(filters);
+        var plots = [];
+            
+        filters.map((f) => {
+            if(f.action === 2) {
+                plots.push(<MoneyPlot filter={f} />);
+            }
+        });
+
+        console.log(plots)
+
         return (
             <div className="dashboard">
                 <h2>Dashboard</h2>
                 <FilterOptions />
-                {filters.map(f => {if(f.action === 3)  <MoneyPlot filter={f}  />})}
+                {plots}
             </div>
             );
     }

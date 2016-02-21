@@ -9,9 +9,12 @@ class MoneyPlot extends Component {
 
     render() {
 
+        const filter = this.props.filter;
+        console.log(this.props.filter.receipts);
+        console.log(this.props.filter);
         let data = [ {
-            x: [1, 2, 3, 4], 
-            y: [10, 15, 13, 17], 
+            x: this.props.filter.receipts.map((r) => new Date(r.date)),
+            y: this.props.filter.receipts.map((r) => parseInt(r.subtotal)),
             type: 'scatter'
         } ];
 
