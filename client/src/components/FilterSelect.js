@@ -11,14 +11,7 @@ class FilterSelect extends Component {
     }
 
     componentDidMount() {
-        const { dispatch, emails } = this.props;
-        this.props.dispatch(fetchEmails());
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if(nextProps.emails.length > this.props.emails.length) {
-            const { dispatch, emails } = nextProps;
-        }
+        const { dispatch } = this.props;
     }
 
     render() {
@@ -27,7 +20,7 @@ class FilterSelect extends Component {
         return (
                 <div>
                     <h2>Select Emails</h2>
-                    <EmailList emails={emails} onEmailClick={(id) => this.props.dispatch(addEmailToNewFilter(id))} />
+                    <EmailList emails={emails} onEmailClick={(id) => this.props.handleClicks(id)} />
                     <button onClick={() => this.props.dispatch(finishEmailSelection())}>Finish</button>
                 </div>
                );
@@ -37,15 +30,8 @@ class FilterSelect extends Component {
 
 FilterSelect.propTypes = {
     emails: PropTypes.array.isRequired,
+    handleClicks: PropTypes.func.isRequired,    
 }
 
-function mapStateToProps(state) {
-    const emails = state.email.emails;
 
-    return {
-        emails
-    }
-}
-
-export default connect(
-mapStateToProps)(FilterSelect)
+export default connect()(FilterSelect)

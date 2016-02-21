@@ -3,13 +3,19 @@ import FilterSelect from './FilterSelect'
 import FilterList from './FilterList';
 import RecipeReview from './RecipeReview'
 import { connect } from 'react-redux';
-import { startNewRecipe } from '../actions/filter';
+import { startNewRecipe, createNewRecipe } from '../actions/filter';
 
 class RecipeFlow extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            ids: []
+        }
+
+        this.handleEmailSelect = this.handleEmailSelect.bind(this);
         this.makeNewRecipe = this.makeNewRecipe.bind(this);
+        this.handleFinish = this.handleFinish.bind(this);
     }
 
     componentDidMount() {
@@ -22,8 +28,21 @@ class RecipeFlow extends Component {
         }
     }
 
+    handleEmailSelect(id) {
+        var ids = this.state.ids || [];
+        ids.push(id);
+        this.setState({
+            ids: ids
+        });
+    }
+
     makeNewRecipe() {
-        dispatch(startNewRecipe());
+        this.props.dispatch(startNewRecipe());
+    }
+
+    handleFinish(name) {
+        console.log('what');
+        this.props.dispatch(createNewRecipe(name, this.state.ids));
     }
 
     render () {
@@ -37,15 +56,15 @@ class RecipeFlow extends Component {
                 break;
 
             case 0:
-                slide = <FilterSelect />;
+                slide = <FilterSelect emails={this.props.emails} handleClicks={(id) => this.handleEmailSelect(id)} />;
                 break;
 
             case 1:
-                slide = <RecipeReview />;
+                slide = <RecipeReview onFinish={(name) => this.handleFinish(name)} />;
                 break;
 
             default:
-                slide = <FilterSelect />;
+                slide = <FilterList filters={filters} />;
         }
 
         return (
@@ -60,15 +79,18 @@ class RecipeFlow extends Component {
 RecipeFlow.propTypes = {
     newFilterStatus: PropTypes.number.isRequired,
     filters: PropTypes.array.isRequired,
+    emails: PropTypes.array.isRequired,
 }
 
 function mapStateToProps(state) {
     const newFilterStatus = state.filter.newFilterStatus;
     const filters = state.filter.filters;
+    const emails = state.email.emails;
 
     return {
         newFilterStatus,
         filters,
+        emails,
     }
 }
 

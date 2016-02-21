@@ -34,6 +34,7 @@ export const addEmailToNewFilter = (id) => {
 }
 
 export const finishEmailSelection = () => {
+   console.log('how');
    return {
         type: FINISH_EMAIL_SELECTION
    }
@@ -54,9 +55,12 @@ export const createNewRecipe = (name, newRecipe) => {
 
         dispatch(sendNewRecipe(name));
 
-        return fetch('/recipe', {
+        return fetch('http://localhost:5000/api/v1/recipes/', {
             method: 'post',
-            newRecipe: 1
+            newRecipe: {
+                ids: newRecipe,
+                name: name
+            }
         });
     }
 }
