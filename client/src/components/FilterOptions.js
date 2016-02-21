@@ -18,11 +18,13 @@ class FilterOptions extends Component {
     }
 
     render () {
+        var id = 0;
+        console.log(this.props.filters);
         return (
                 <div>
                     {this.props.filters.map(f =>
                             <button
-                                key={f.id}
+                                key={id++}
                                 onClick={() => this.handleClick(f.title)}
                                 >
                                 {f.title}

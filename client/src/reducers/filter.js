@@ -16,6 +16,11 @@ const initialState = {
                 title: 'Donate Your Change',
                 description: 'After extracting the finicial data from your emailed recipts, this rounds to the next dollar and donates the change to the Red Cross',
                 id: 1
+            },
+            {
+                title: 'Plot Your Spending',
+                description: 'Extracts information from reciepts and plots them',
+                id: 3
             }
         ],
     newFilterStatus: -1,
@@ -71,6 +76,11 @@ export default function filter(state = initialState, action) {
             return Object.assign({}, state, {
                 newFilterStatus: -1,
                 filters: filter 
+            });
+
+        case 'GET_FILTERS_SUCCESS':
+            return Object.assign({}, state, {
+                filters: action.payload.filters
             });
 
         default:

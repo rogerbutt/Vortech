@@ -80,7 +80,7 @@ export const createNewRecipe = (name, newRecipe, action) => {
             method: 'post',
             headers: {
               'Accept': 'application/json',
-              'COntent-Type': 'application/json'
+              'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 ids: newRecipe,
@@ -96,3 +96,27 @@ export const createNewRecipe = (name, newRecipe, action) => {
     }
 }
 
+export const getPlotInfo = () => {
+}
+
+export const getFiltersSuccess = (filters) => {
+    return {
+        type: 'GET_FILTERS_SUCCESS',
+        payload: {
+            filters
+        }
+    }
+}
+
+export const fetchFilters = () => {
+    return function(dispatch) {
+        return fetch('http://localhost:5000/api/v1/filters/')
+            .then((res) => res.json())
+            .then(json => {
+                var id = 0;
+                const filters = json.filters.map(f => Object.assign({}, f, {title: f.name, id:id++ }));
+                console.log(filters);
+                dispatch(getFiltersSuccess(filters));
+            });
+    }
+}

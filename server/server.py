@@ -79,9 +79,9 @@ def get_post_recipes():
         for result in db.inbox.find():
             del result["_id"]
             if recipe is not None and recipe in result['filters']:
-                recipes['recipes'].append(result)
+                recipes['emails'].append(result)
             elif recipe is None:
-                recipes['recipes'].append(result)
+                recipes['emails'].append(result)
         return json.dumps(recipes, indent=4)
     if request.method == 'POST' or request.method == 'OPTIONS':
         req_json = request.get_json()
