@@ -2,7 +2,10 @@ import { REQUEST_FILTERS, REQUEST_FILTERS_SUCCESS, ADD_EMAIL_TO_NEW_FILTER, FINI
 
 const initialState = {
     isFetching: false,
-    newFilterIds: null,
+    newFilter: {
+        ids: null,
+        name: null,
+    },
     newFilterStatus: -1,
     filters: [
         {
@@ -35,7 +38,9 @@ export default function filter(state = initialState, action) {
             ids.push(action.payload.id);
 
             return Object.assign({}, state, {
-                newFilterIds: ids
+                newFilteri: {
+                    ids: ids,
+                }
             });
 
         case FINISH_EMAIL_SELECTION:

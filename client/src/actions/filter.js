@@ -39,21 +39,26 @@ export const finishEmailSelection = () => {
    }
 }
 
-export const sendNewRecipe = () => {
+export const sendNewRecipe = (name) => {
     return {
-        type: POST_NEW_RECIPE
+        type: POST_NEW_RECIPE,
+        payload: {
+            name
+        }
     }
 }
 
-export const createNewRecipe = () => {
+export const createNewRecipe = (name, newRecipe) => {
 
-    dispatch(sendNewRecipe());
+    return function(dispatch) {
 
-    return fetch('/recipe', {
-        method: 'post',
-        emailIds: [ 1 ]
-    });
+        dispatch(sendNewRecipe(name));
 
+        return fetch('/recipe', {
+            method: 'post',
+            newRecipe: 1
+        });
+    }
 }
 
 export const fetchFilters = () => {

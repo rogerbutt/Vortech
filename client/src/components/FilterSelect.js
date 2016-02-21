@@ -28,7 +28,7 @@ class FilterSelect extends Component {
                 <div>
                     <h2>Select Emails</h2>
                     <EmailList emails={emails} onEmailClick={(id) => this.props.dispatch(addEmailToNewFilter(id))} />
-                    <button onClick={() => this.props.dispatch(finishFilterSelection())}>Finish</button>
+                    <button onClick={() => this.props.dispatch(finishEmailSelection())}>Finish</button>
                 </div>
                );
     }
