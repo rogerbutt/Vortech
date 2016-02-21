@@ -97,7 +97,7 @@ def get_post_recipes():
         db.filters.insert(new_filter)
         handle_new_filter(req_json['name'])
 
-@app.route('/api/v1/filters/', methods=['GET'])
+@app.route('/api/v1/filters/', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*', headers="Origin, X-Requested-With, Content-Type, Accept")
 def get_filters():
     if request.method == 'GET':
@@ -110,12 +110,11 @@ def get_filters():
 def parse_subtotal(body):
     return body[-5:]
 
-@app.route('/api/v1/actions/', methods=['GET'])
+@app.route('/api/v1/actions/', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*', headers="Origin, X-Requested-With, Content-Type, Accept")
 def get_actions():
     action = request.args.get('action')
     name = request.args.get('filter')
-    print(name)
     receipt = { "receipts": [] }
     if request.method == 'GET' and action == "2":
         filters = db.filters.find({'name':name}).limit(1)

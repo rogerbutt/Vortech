@@ -26,7 +26,7 @@
           "sender"  : "Uber Receipts",
           "subject" : "Your Tuesday morning trip with Uber",
           "date"    : "1/19/16",
-          "body"    : "Base Fare 3.0\n Distance 4.00 \n Time 1.00 \n  $3.00 \n Minimum Subtotal 9.00"
+          "body"    : "Base Fare 3.0\n Distance 4.00 \n Time 1.00 \n  $3.00 \n Minimum Subtotal 19.00"
       },
       {
           "id"      : 19,
@@ -139,6 +139,41 @@
           "subject" : "Your Saturday Afternoon trip with Uber",
           "date"    : "1/03/16",
           "body"    : "Base Fare 4.0\n Distance 5.00 \n Time 8.00 \n  $4.00 \n Minimum Subtotal 52.00"
+      },
+      {
+          "id"      : 26,
+          "sender"  : "Starbucks",
+          "subject" : "Starbucks purchase confirmation",
+          "date"    : "2/15/16",
+          "body"    : "Thank you for your purchase of Grande Latte at starbucks, Minimum Subtotal 7.00"
+      },
+      {
+          "id"      : 28,
+          "sender"  : "Flipboard",
+          "subject" : "10 for Today: The soulful economy",
+          "date"    : "1/15/16",
+          "body"    : "Catch the most recent news on our Mobile App, Google play: play, ios store: store"
+      },
+      {
+          "id"      : 29,
+          "sender"  : "My Starbucks Rewards",
+          "subject" : "Make it a perfect morning",
+          "date"    : "1/15/16",
+          "body"    : "Order coffee ahead and your morning meal as well. Earn 1 Bonus Star on every breakfast sandwich you order using Mobile Order & Pay."
+      },
+      {
+          "id"      : 30,
+          "sender"  : "Uber",
+          "subject" : "Boom.",
+          "date"    : "1/15/16",
+          "body"    : "SAVE 25% WHEN YOU RIDE With uberX prices now 25% cheaper in Champaign, getting from here to there has never been more affordable.<Paste>"
+      },
+      {
+          "id"      : 31,
+          "sender"  : "Coleman, Cynthia Jeanette",
+          "subject" : "Startup Career Fair Today!",
+          "date"    : "1/15/16",
+          "body"    : "Don’t miss the Startup Career Fair today!  Dress is casual 2pm-6pm Illini Union"
       }
   ]
 }
