@@ -94,11 +94,13 @@ RecipeFlow.propTypes = {
     newFilterStatus: PropTypes.number.isRequired,
     filters: PropTypes.array.isRequired,
     emails: PropTypes.array.isRequired,
+    actions: PropTypes.object
 }
 
 function mapStateToProps(state) {
     const newFilterStatus = state.filter.newFilterStatus;
     const filters = state.filter.filters;
+    console.log(filters);
     const emails = state.email.emails;
     const actions = state.filter.actions
 

@@ -22,7 +22,7 @@ const initialState = {
     filters: [
         {
             id: 1,
-            title: 'Flights',
+            title: 'flights',
             action: 'Extracts your flight data'
         }
     ]
@@ -61,8 +61,16 @@ export default function filter(state = initialState, action) {
             });
 
         case NEW_RECIPE_SUCCESS:
+            var filter = state.filters;
+            filter.push({
+                    id: state.filters[state.filters.length -1].id + 1,
+                    action: (action.payload.action).toString(),
+                    title: action.payload.name,
+            });
+
             return Object.assign({}, state, {
-                newFilterStatus: -1
+                newFilterStatus: -1,
+                filters: filter 
             });
 
         default:

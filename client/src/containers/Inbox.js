@@ -19,7 +19,10 @@ class Inbox extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(nextProps.emails.length !== this.props.emails.length) {
+        if(!nextProps)
+            return;
+
+        if(!this.props.emails || nextProps.emails.length !== this.props.emails.length) {
             const { dispatch, emails } = nextProps;
         }
     }

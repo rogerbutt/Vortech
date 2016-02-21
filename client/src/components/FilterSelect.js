@@ -20,6 +20,7 @@ class FilterSelect extends Component {
         return (
                 <div className="filter-select">
                     <h2>Select Emails</h2>
+                    <p>Select a few emails to smartly create a filter.</p>
                     <div className="select-email-list">
                         <EmailList emails={emails} onEmailClick={(id) => this.props.handleClicks(id)} />
                     </div>
