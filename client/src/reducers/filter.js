@@ -1,4 +1,4 @@
-import { REQUEST_FILTERS, REQUEST_FILTERS_SUCCESS, ADD_EMAIL_TO_NEW_FILTER, FINISH_EMAIL_SELECTION, START_NEW_RECIPE, NEW_RECIPE_SUCCESS } from '../constants/FilterConstants'
+import { REQUEST_FILTERS, REQUEST_FILTERS_SUCCESS, ADD_EMAIL_TO_NEW_FILTER, FINISH_EMAIL_SELECTION, START_NEW_RECIPE, NEW_RECIPE_SUCCESS, INCREMENT_FLOW } from '../constants/FilterConstants'
 
 const initialState = {
     isFetching: false,
@@ -6,6 +6,18 @@ const initialState = {
         ids: null,
         name: null,
     },
+    actions: [
+            {
+                title: 'Extract Flight Data',
+                description: 'This analyses the flight data from your emails and gives you your flight information',
+                id: 0
+            },
+            {
+                title: 'Donate Your Change',
+                description: 'After extracting the finicial data from your emailed recipts, this rounds to the next dollar and donates the change to the Red Cross',
+                id: 1
+            }
+        ],
     newFilterStatus: -1,
     filters: [
         {
@@ -26,6 +38,12 @@ export default function filter(state = initialState, action) {
             return Object.assign({}, state, {
                 isFetching: false,
                 filters: action.payload.filters
+            });
+
+        case INCREMENT_FLOW:
+            console.log(state);
+            return Object.assign({}, state, {
+                newFilterStatus: state.newFilterStatus + 1
             });
 
         case START_NEW_RECIPE:
