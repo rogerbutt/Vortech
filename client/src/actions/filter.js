@@ -57,16 +57,20 @@ export const createNewRecipe = (name, newRecipe) => {
 
         return fetch('http://localhost:5000/api/v1/recipes/', {
             method: 'post',
-            newRecipe: {
+            headers: {
+              'Accept': 'application/json',
+              'COntent-Type': 'application/json'
+            },
+            body: JSON.stringify({
                 ids: newRecipe,
                 name: name
-            }
+            })
         });
     }
 }
 
 export const fetchFilters = () => {
-    
+
     dispatch(requestFilters());
 
     return fetch('/filter')
