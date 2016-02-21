@@ -154,6 +154,8 @@
     }
 
     .filter-list {
+        overflow-y: scroll;
+        height: 600px;
         ul {
             padding-top: 50px;
 
