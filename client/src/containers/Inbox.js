@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import EmailList from '../components/EmailList';
 import ContentView from './ContentView';
-import { selectEmail } from '../actions/email';
+import { selectEmail, fetchEmails } from '../actions/email';
 import { connect } from 'react-redux';
 
 class Inbox extends Component {
@@ -15,6 +15,13 @@ class Inbox extends Component {
             dispatch,
             emails
         } = this.props;
+        this.props.dispatch(fetchEmails());
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.emails.length !== this.props.emails.length) {
+            const { dispatch, emails } = nextProps;
+        }
     }
 
     render () {
