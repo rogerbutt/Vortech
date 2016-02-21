@@ -20,7 +20,7 @@ const initialState = {
             {
                 title: 'Plot Your Spending',
                 description: 'Extracts information from reciepts and plots them',
-                id: 3
+                id: 2
             }
         ],
     newFilterStatus: -1,
@@ -79,8 +79,29 @@ export default function filter(state = initialState, action) {
             });
 
         case 'GET_FILTERS_SUCCESS':
+            console.log(action.payload.filters);
             return Object.assign({}, state, {
                 filters: action.payload.filters
+            });
+
+        case 'UPDATE_FILTER':
+            var filter = state.filters;
+            console.log(filter);
+            console.log(action.payload.receipts);
+            var newFilters = filter.map(f => {
+                if(f.id === action.payload.id) {
+                    f.receipts = [].concat(action.payload.receipts);
+                    return Object.assign({}, f, {
+                        receipts: [].concat(action.payload.receipts)
+                    });
+                }
+                console.log(f)
+                return f;
+            });
+            console.log(newFilters);
+
+            return Object.assign({}, state, {
+                filters: newFilters
             });
 
         default:

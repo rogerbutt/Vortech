@@ -96,7 +96,25 @@ export const createNewRecipe = (name, newRecipe, action) => {
     }
 }
 
-export const getPlotInfo = () => {
+export const updateFilter = (receipts, id) => {
+    console.log(receipts);
+    return {
+        type: 'UPDATE_FILTER',
+        payload: {
+            receipts,
+            id
+        }
+    }
+}
+
+export const getPlotInfo = (filter) => {
+    console.log(filter);
+    return function (dispatch) {
+        return fetch('http://localhost:5000/api/v1/actions/?action=2&filter='+filter.title)
+            .then(res => res.json())
+            .then(json => dispatch(updateFilter(json.receipts, filter.id)))
+            .catch(err => console.log(err))
+    }
 }
 
 export const getFiltersSuccess = (filters) => {
@@ -114,8 +132,13 @@ export const fetchFilters = () => {
             .then((res) => res.json())
             .then(json => {
                 var id = 0;
-                const filters = json.filters.map(f => Object.assign({}, f, {title: f.name, id:id++ }));
-                console.log(filters);
+                const filters = json.filters.map(f => {
+                    let ff = f;
+                    ff.id = id;
+                    ff.title = f.name;
+                    dispatch(getPlotInfo(ff));
+                    return Object.assign({}, f, {title: f.name, id:id++ });
+                });
                 dispatch(getFiltersSuccess(filters));
             });
     }
