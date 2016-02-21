@@ -72,7 +72,6 @@ def handle_new_filter(name):
 def get_post_recipes():
     """ Allows users to post and get the current recipes"""
     if request.method == 'GET':
-        #if request.args.
         recipe = request.args.get('recipe')
         recipes = {"recipes": [] }
         for result in db.inbox.find():
@@ -96,9 +95,17 @@ def get_post_recipes():
             "senders": senders }
         db.filters.insert(new_filter)
         handle_new_filter(req_json['name'])
-        ret_val = json.dumps(new_filter)
-        #return ret_val
 
+@app.route('/api/v1/filters/', methods=['GET'])
+@crossdomain(origin='*', headers="Origin, X-Requested-With, Content-Type, Accept")
+def get_filters():
+    """ Allows users to post and get the current recipes"""
+    if request.method == 'GET':
+        filters = {"filters": [] }
+        for result in db.filters.find():
+            del result["_id"]
+            filters['filters'].append(result)
+        return json.dumps(filters, indent=4)
 
 @app.route('/api/v1/mail/', methods=['GET'])
 @crossdomain(origin='*', headers="Origin, X-Requested-With, Content-Type, Accept")
@@ -111,7 +118,18 @@ def get_all_emails():
             emails['emails'].append(result)
         return json.dumps(emails, indent=4)
 
-def populate_mongodb():
+def populate_mongodb_filters():
+    new_filter = {
+        'name': "flights",
+        "keywords": ['plane'],
+        "senders": ["American Airlines", "Virgin Atlantic",
+            "United Airlines"]
+        }
+    db.filters.insert(new_filter)
+    handle_new_filter(new_filter['name'])
+
+
+def populate_mongodb_emails():
     with open('emails.json') as data_file:
         data = json.load(data_file)
     for email in data["emails"]:
@@ -131,5 +149,6 @@ def spawn_email_proc():
     return proc
 
 if __name__ == '__main__':
-    populate_mongodb()
+    populate_mongodb_emails()
+    populate_mongodb_filters()
     app.run()
