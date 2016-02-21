@@ -85,7 +85,9 @@ export const createNewRecipe = (name, newRecipe, action) => {
             })
         })
         .then(res => {
-            dispatch(newRecipeSuccess());            
+            dispatch(newRecipeSuccess());
+        }).catch(err => {
+            dispatch(newRecipeSuccess());
         });
     }
 }

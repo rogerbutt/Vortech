@@ -68,8 +68,7 @@ def handle_new_filter(name):
                 upsert=False, multi=False)
 
 @app.route('/api/v1/recipes/', methods=['GET','POST','OPTIONS'])
-@crossdomain(origin='*',
-        headers="Origin, X-Requested-With, Content-Type, Accept")
+@crossdomain(origin='*', headers="Origin, X-Requested-With, Content-Type, Accept")
 def get_post_recipes():
     """ Allows users to post and get the current recipes"""
     if request.method == 'GET':
@@ -98,12 +97,11 @@ def get_post_recipes():
         db.filters.insert(new_filter)
         handle_new_filter(req_json['name'])
         ret_val = json.dumps(new_filter)
-        print(ret_val)
-        return ret_val
+        #return ret_val
 
 
 @app.route('/api/v1/mail/', methods=['GET'])
-@crossdomain(origin='*')
+@crossdomain(origin='*', headers="Origin, X-Requested-With, Content-Type, Accept")
 def get_all_emails():
     """ Returns all emails in mongodb """
     if request.method == 'GET':
