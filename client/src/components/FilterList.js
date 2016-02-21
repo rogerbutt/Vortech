@@ -1,6 +1,22 @@
 import React, { PropTypes } from 'react';
 import FilterItem from './FilterItem';
 
+function interp(action) {
+    switch(action) {
+        case 0:
+            return "Flight Info";
+
+        case 1:
+            return "Donate";
+
+        case 2:
+            return "Plot";
+        default:
+            return action;
+    }
+}
+
+
 const FilterList = ({ filters, makeNewRecipe }) => (
             <div className="filter-list">
                 <button onClick={() => makeNewRecipe() }>
@@ -12,7 +28,7 @@ const FilterList = ({ filters, makeNewRecipe }) => (
                             <FilterItem
                                 key={f.id}
                                 title={f.title}
-                                action={f.action}
+                                action={interp(f.action)}
                                 />
                         )}
                 </ul>

@@ -1,14 +1,34 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 
-const EmailItem = ({ onClick, sender, subject }) => (
+class EmailItem extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            active: false
+        };
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick() {
+        this.setState({
+            active: !this.state.active
+        });
+        this.props.onClick();
+    }
+
+    render() {
+        return (
             <li
-                onClick={onClick}
-                className="email-item"
+                onClick={this.handleClick}
+                className={(!this.state.active) ? "email-item" : "active email-item"}
                 >
-                <h4>{sender}</h4>
-                <p>{subject}</p> 
+                <h4>{this.props.sender}</h4>
+                <p>{this.props.subject}</p> 
             </li>
-        )
+        );
+    }
+}
 
 EmailItem.propTypes = {
     onClick: PropTypes.func.isRequired,

@@ -7,15 +7,23 @@ class MoneyPlot extends Component {
         super(props);
     }
 
+    componentWillReceiveProps(nextProps) {
+        console.log('derp');
+        console.log(nextProps.filter.receipts);
+        const { filter } = nextProps;
+
+    }
+
+    shouldComponentUpdate(next, cur) {
+        return true;
+    }
+
     render() {
 
-        const filter = this.props.filter;
-        console.log(this.props.filter.receipts);
-        console.log(this.props.filter);
         let data = [ {
             x: this.props.filter.receipts.map((r) => new Date(r.date)),
             y: this.props.filter.receipts.map((r) => parseInt(r.subtotal)),
-            type: 'scatter'
+            type: 'bar'
         } ];
 
         let layout = {                    

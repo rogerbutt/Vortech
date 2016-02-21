@@ -21,7 +21,7 @@ class Dashboard extends Component {
         var plots = [];
             
         filters.map((f) => {
-            if(f.action === 2) {
+            if(f.receipts && f.action === 2) {
                 plots.push(<MoneyPlot filter={f} />);
             }
         });
@@ -31,7 +31,6 @@ class Dashboard extends Component {
         return (
             <div className="dashboard">
                 <h2>Dashboard</h2>
-                <FilterOptions />
                 {plots}
             </div>
             );
