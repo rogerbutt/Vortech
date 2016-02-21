@@ -26,8 +26,10 @@ class RecipeReview extends Component {
 
     render () {
         return (
-                    <div>
-                        Name:
+                    <div className="recipe-review">
+                        <h2>Review Your Recipe</h2>
+                        <p>Name the awesome recipe you have created</p>
+                        <h4>Name:</h4>
                         <input type="text" onChange={this.handleName}/>
                         <button onClick={() => this.props.onFinish(this.state.name)}>Finish</button>
                     </div>
