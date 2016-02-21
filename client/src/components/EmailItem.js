@@ -5,7 +5,8 @@ const EmailItem = ({ onClick, sender, subject }) => (
                 onClick={onClick}
                 className="email-item"
                 >
-                {sender} {subject} 
+                <h4>{sender}</h4>
+                <p>{subject}</p> 
             </li>
         )
 

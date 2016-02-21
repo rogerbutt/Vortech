@@ -27,8 +27,8 @@ class Filters extends Component {
         var content = null;
 
         return (
-                    <div>
-                        <div>
+                    <div className="filter-content">
+                        <div className="filter-header">
                             <h1>Recipes</h1>
                         </div>
                         <RecipeFlow />

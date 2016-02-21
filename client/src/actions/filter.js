@@ -66,7 +66,7 @@ export const newRecipeSuccess = () => {
     }
 }
 
-export const createNewRecipe = (name, newRecipe) => {
+export const createNewRecipe = (name, newRecipe, action) => {
 
     return function(dispatch) {
 
@@ -80,6 +80,7 @@ export const createNewRecipe = (name, newRecipe) => {
             },
             body: JSON.stringify({
                 ids: newRecipe,
+                action: action,
                 name: name
             })
         })

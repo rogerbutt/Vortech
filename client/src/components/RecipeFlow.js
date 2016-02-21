@@ -40,7 +40,6 @@ class RecipeFlow extends Component {
     }
 
     addAction(id) {
-       console.log('fuck');
        this.setState({
            action: id
        });
@@ -53,7 +52,7 @@ class RecipeFlow extends Component {
 
     handleFinish(name) {
         console.log('what');
-        this.props.dispatch(createNewRecipe(name, this.state.ids));
+        this.props.dispatch(createNewRecipe(name, this.state.ids, this.state.action));
     }
 
     render () {

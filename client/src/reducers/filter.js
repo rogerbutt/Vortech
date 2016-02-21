@@ -22,7 +22,8 @@ const initialState = {
     filters: [
         {
             id: 1,
-            title: 'Flights'
+            title: 'Flights',
+            action: 'Extracts your flight data'
         }
     ]
 }

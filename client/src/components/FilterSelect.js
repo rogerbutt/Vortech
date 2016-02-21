@@ -18,10 +18,9 @@ class FilterSelect extends Component {
         const emails = this.props.emails;
 
         return (
-                <div>
+                <div className="filter-select">
                     <h2>Select Emails</h2>
                     <div className="select-email-list">
-
                         <EmailList emails={emails} onEmailClick={(id) => this.props.handleClicks(id)} />
                     </div>
                     <button onClick={() => this.props.dispatch(finishEmailSelection())}>Finish</button>
