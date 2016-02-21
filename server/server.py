@@ -40,8 +40,32 @@ def make_new_recipe(emails, filtered):
     return keywords, senders
 
 def handle_new_filter(name):
-    #for email in db.inbox.find()
-    pass
+
+    def check_email_sender(email, filter_senders):
+        return email['sender'] in filter_senders
+    def check_email_body(email, filter_keywords):
+        num_keywords = 0
+        for keyword in filter_keywords:
+            if keyword in email['body']:
+                num_keywords += 1
+        return num_keywords > 2
+
+    filters = db.filters.find({'name':name}).limit(1)
+    for new_filter in filters:
+        filter_senders = new_filter['senders']
+        filter_keywords = new_filter['keywords']
+    for email in db.inbox.find():
+        if check_email_sender(email, filter_senders) or check_email_body(email, filter_keywords):
+            if email['filters'] is not None:
+                print(type(email['filters']))
+                complete_filter = email['filters']
+                complete_filter.append(name)
+            else:
+                complete_filter = [name]
+            db.inbox.update(
+                {"id": email['id']},
+                { "$set": { "filters": complete_filter}},
+                upsert=False, multi=False)
 
 @app.route('/api/v1/recipes/', methods=['GET','POST','OPTIONS'])
 @crossdomain(origin='*',
@@ -49,21 +73,32 @@ def handle_new_filter(name):
 def get_post_recipes():
     """ Allows users to post and get the current recipes"""
     if request.method == 'GET':
+        #if request.args.
+        recipe = request.args.get('recipe')
         recipes = {"recipes": [] }
-        for result in db.recipes.find():
-            recipes['recipes'].append(result)
+        for result in db.inbox.find():
+            del result["_id"]
+            if recipe is not None and recipe in result['filters']:
+                recipes['recipes'].append(result)
+            elif recipe is None:
+                recipes['recipes'].append(result)
         return json.dumps(recipes, indent=4)
     if request.method == 'POST' or request.method == 'OPTIONS':
         req_json = request.get_json()
+        print("Handling {}".format(req_json))
         emails = {"emails": [] }
         for result in db.inbox.find():
             del result["_id"]
             emails['emails'].append(result)
         keywords, senders = make_new_recipe(emails, req_json)
-        new_filter = {req_json['name']: {"keywords": keywords, "senders": senders }}
+        new_filter = {
+            'name': req_json['name'],
+            "keywords": keywords,
+            "senders": senders }
         db.filters.insert(new_filter)
         handle_new_filter(req_json['name'])
         ret_val = json.dumps(new_filter)
+        print(ret_val)
         return ret_val
 
 @app.route('/api/v1/mail/', methods=['GET'])
