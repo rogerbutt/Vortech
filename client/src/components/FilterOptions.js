@@ -14,7 +14,7 @@ class FilterOptions extends Component {
     }
 
     handleClick(id) {
-        this.props.dispatch(selectEmailFilter());
+        this.props.dispatch(selectEmailFilter(id));
     }
 
     render () {
