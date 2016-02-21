@@ -1,5 +1,8 @@
-import React, { Component, PropsTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import EmailList from './EmailList';
+import { connect } from 'react-redux';
+import { fetchEmails } from '../actions/email';
+import { addEmailToNewFilter, finishEmailSelection } from '../actions/filter';
 
 class FilterSelect extends Component {
     
@@ -9,6 +12,13 @@ class FilterSelect extends Component {
 
     componentDidMount() {
         const { dispatch, emails } = this.props;
+        this.props.dispatch(fetchEmails());
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.emails.length > this.props.emails.length) {
+            const { dispatch, emails } = nextProps;
+        }
     }
 
     render() {
@@ -17,10 +27,25 @@ class FilterSelect extends Component {
         return (
                 <div>
                     <h2>Select Emails</h2>
-                    <EmailList emails={emails} onEmailClick={(id) => dispatch(addEmailToNewFilter(id))} />
-                    <button onClick={() => dispatch(finishFilterSelection())}>Finish</button>
+                    <EmailList emails={emails} onEmailClick={(id) => this.props.dispatch(addEmailToNewFilter(id))} />
+                    <button onClick={() => this.props.dispatch(finishFilterSelection())}>Finish</button>
                 </div>
                );
     }
 
 }
+
+FilterSelect.propTypes = {
+    emails: PropTypes.array.isRequired,
+}
+
+function mapStateToProps(state) {
+    const emails = state.email.emails;
+
+    return {
+        emails
+    }
+}
+
+export default connect(
+mapStateToProps)(FilterSelect)

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const EmailItem = ({ onClick, sender, subject, date }) => (
+const EmailItem = ({ onClick, sender, subject }) => (
             <li
                 onClick={onClick}
                 >
@@ -12,7 +12,6 @@ EmailItem.propTypes = {
     onClick: PropTypes.func.isRequired,
     sender: PropTypes.string.isRequired,
     subject: PropTypes.string.isRequired,
-    date: PropTypes.object.isRequired,
 }
 
 export default EmailItem

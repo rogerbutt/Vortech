@@ -1,27 +1,41 @@
 import React, { Component, PropTypes } from 'react';
 import FilterSelect from './FilterSelect'
+import FilterList from './FilterList';
 import RecipeReview from './RecipeReview'
+import { connect } from 'react-redux';
+import { startNewRecipe } from '../actions/filter';
 
 class RecipeFlow extends Component {
 
     constructor(props) {
         super(props);
+        this.makeNewRecipe = this.makeNewRecipe.bind(this);
     }
 
     componentDidMount() {
-        const { dispatch, newRecipeStatus } = this.props;
+        const { dispatch, newFilterStatus, filters } = this.props;
     }
 
-    componentWillRecieveProps(nextProps) {
+    componentWillReceiveProps(nextProps) {
         if(nextProps.newRecipeStatus !== this.props.newRecipeStatus) {
-            const { dispatch, newRecipeStatus } = nextProps;
+            const { dispatch, newFilterStatus, filters } = nextProps;
         }
+    }
+
+    makeNewRecipe() {
+        dispatch(startNewRecipe());
     }
 
     render () {
 
         var slide = null;
-        switch(this.props.newRecipeStatus) {
+        const filters = this.props.filters;
+        
+        switch(this.props.newFilterStatus) {
+            case -1:
+                slide = <FilterList filters={filters} />;
+                break;
+
             case 0:
                 slide = <FilterSelect />;
                 break;
@@ -44,14 +58,17 @@ class RecipeFlow extends Component {
 }
 
 RecipeFlow.propTypes = {
-    newRecipeStatus: PropTypes.number.isRequired
+    newFilterStatus: PropTypes.number.isRequired,
+    filters: PropTypes.array.isRequired,
 }
 
 function mapStateToProps(state) {
-    const newRecipeStatus = state.filter.newRecipeStatus;
+    const newFilterStatus = state.filter.newFilterStatus;
+    const filters = state.filter.filters;
 
     return {
-        newRecipeStatus
+        newFilterStatus,
+        filters,
     }
 }
 

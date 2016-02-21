@@ -1,4 +1,4 @@
-import { REQUEST_EMAIL, REQUEST_EMAIL_SUCCESS, SELECT_EMAIL } from '../constants/EmailConstants'
+import { REQUEST_EMAIL, REQUEST_EMAILS_SUCCESS, SELECT_EMAIL } from '../constants/EmailConstants'
 
 const initialState = {
     isFetching: false,
@@ -21,7 +21,8 @@ export default function email(state = initialState, action) {
                 isFetching: true
             });
 
-        case REQUEST_EMAIL_SUCCESS: 
+        case REQUEST_EMAILS_SUCCESS: 
+            console.log(action.payload.emails);
             return Object.assign({}, state, {
                 isFetching: false,
                 emails: action.payload.emails

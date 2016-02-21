@@ -1,4 +1,5 @@
 import React, { Component, PropsTypes } from 'react';
+import { connect } from 'react-redux';
 
 class RecipeReview extends Component {
     
@@ -22,7 +23,7 @@ RecipeReview.propTypes = {
 }
 
 function mapStateToProps(state) {
-    return {}
+    return {};
 }
 
 export default connect(

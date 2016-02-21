@@ -10,7 +10,7 @@ class EmailBody extends Component {
         const { dispatch, email } = this.props;
     }
 
-    componentWillRecieveProps(nextProps) {
+    componentWillReceiveProps(nextProps) {
         if(nextProps.email.id !== this.props.email.id) {
             const { dispatch, email } = nextProps;
         }
@@ -35,8 +35,11 @@ EmailBody.propTypes = {
 }
 
 function mapStateToProps(state) {
-    const email = state.email.emails[state.email.selectedEmail];
-
+    const email = state.email.emails.filter((email) => {
+        if(email.id === state.email.selectedEmail) {
+            return email;
+        }
+    })[0];
     return {
         email
     }
